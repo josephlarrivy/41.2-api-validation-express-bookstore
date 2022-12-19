@@ -1,3 +1,6 @@
+// express is not resolving paths
+// check configurations
+
 const express = require("express");
 const Book = require("../models/book");
 
@@ -15,6 +18,7 @@ router.get("/", async function (req, res, next) {
     return next(err);
   }
 });
+
 
 /** GET /[id]  => {book: book} */
 
@@ -34,7 +38,7 @@ router.post("/", async function (req, res, next) {
     const val = validate(req.body, bookSchema)
     if (val.valid) {
       const book = await Book.create(req.body);
-      return res.status(201).json({ book });
+      return res.status(201).json({book});
     } 
     return next ({
       status: 400,
